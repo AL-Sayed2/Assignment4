@@ -1,12 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English Practice – Trees Communication</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .passage {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .gap-input {
+      width: 50px;
+      padding: 5px;
+      margin: 0 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    .options {
+      background-color: #eef9f1;
+      padding: 15px;
+      margin-top: 20px;
+      border-left: 4px solid #4CAF50;
+    }
+  </style>
 </head>
 <body>
-  <h1>Rock Paper Scissors Game</h1>
-  <script src="script.js"></script> 
+
+<header>
+  <h1>English Reading Practice – Can Trees Communicate?</h1>
+</header>
+
+<div class="container">
+  <div class="passage">
+    <p>
+      Can trees communicate with each other? Surprisingly, the answer seems to be that they can. Forest ecologist Suzanne Simard and her colleagues at the University of British Columbia in Canada have been studying tiny living organisms, or fungi, which form underground communication networks between trees in North American forests. Big old trees, nicknamed 'mother trees', are central to this network, playing a key role in supporting younger trees in the forest - in particular, their own offspring.
+    </p>
+    <p>
+      Simard explains that if you're a mother, you put your children first and tend to give them special treatment.
+      [<input class="gap-input" id="gap37" maxlength="1" />]
+      In similar ways, when mother trees are weak or dying, they adjust their behaviour to make room for their own family members.
+    </p>
+    <p>
+      In one experiment a tree was artificially prevented from getting the light it needed to grow healthily.
+      [<input class="gap-input" id="gap38" maxlength="1" />]
+      The nutrients it needed flowed into the tree from others, through the networks between them.
+    </p>
+    <p>
+      This is of huge benefit to the trees and these networks allow a wider variety of tree types to survive in one area.
+      [<input class="gap-input" id="gap39" maxlength="1" />]
+      This diversity creates a basis for a forest that's resilient to disease, climate change and pests such as insects.
+    </p>
+    <p>
+      According to Simard, when trees are attacked, they increase their own protection against the invaders by producing a substance which helps them to defend themselves.
+      [<input class="gap-input" id="gap40" maxlength="1" />]
+      When these messages are detected, the other trees upgrade their protection systems by producing chemicals of their own.
+    </p>
+    <p>
+      Western Australia, for example, is dominated by healthy trees that don't rely on them, possibly due to the fact that the soil there is richer in nutrients.
+      [<input class="gap-input" id="gap41" maxlength="1" />]
+      However, Australian Eucalyptus forests do have networks, although no research has yet been done into what their function might be.
+    </p>
+    <p>
+      Forests are frequently damaged by fire, she says.
+      [<input class="gap-input" id="gap42" maxlength="1" />]
+      And it may be that protecting old trees will not only contribute to the restoration of these wooded areas, but may also prevent non-native species from invading them.
+    </p>
+  </div>
+
+  <div class="options">
+    <strong>Options:</strong>
+    <ul>
+      <li><strong>A</strong> Each species has its own strengths and weaknesses.</li>
+      <li><strong>B</strong> These can travel between trees in as little as six hours.</li>
+      <li><strong>C</strong> As they do this, chemical signals pass through their networks to nearby trees.</li>
+      <li><strong>D</strong> In response, the surrounding trees began to share resources rather than compete for them.</li>
+      <li><strong>E</strong> Whether fungal networks are used may depend on the local ecosystem.</li>
+      <li><strong>F</strong> Conserving their networks could help them recover after such an event.</li>
+      <li><strong>G</strong> Research suggests that trees do the same thing.</li>
+    </ul>
+  </div>
+
+  <button class="btn" onclick="checkAnswers()">Check Answers</button>
+  <div id="result" class="result"></div>
+</div>
+
+<script>
+  function checkAnswers() {
+    const answers = {
+      gap37: "G",
+      gap38: "B",
+      gap39: "D",
+      gap40: "C",
+      gap41: "E",
+      gap42: "F"
+    };
+
+    let correct = 0;
+    let total = Object.keys(answers).length;
+    let resultHTML = "<ul>";
+
+    for (let gap in answers) {
+      const userInput = document.getElementById(gap).value.toUpperCase();
+      if (userInput === answers[gap]) {
+        resultHTML += `<li>${gap.toUpperCase().replace("GAP", "")}: <span class="correct">Correct</span></li>`;
+        correct++;
+      } else {
+        resultHTML += `<li>${gap.toUpperCase().replace("GAP", "")}: <span class="incorrect">Wrong (Correct: ${answers[gap]})</span></li>`;
+      }
+    }
+
+    resultHTML += `</ul><strong>Your score: ${correct} / ${total}</strong>`;
+
+    const resultBox = document.getElementById("result");
+    resultBox.innerHTML = resultHTML;
+    resultBox.classList.remove("correct", "incorrect");
+    resultBox.classList.add(correct === total ? "correct" : "incorrect");
+  }
+</script>
+
 </body>
 </html>
